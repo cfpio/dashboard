@@ -24,28 +24,53 @@ public class SpeakerController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Retourne les biographies de l'utilisateur
+     * @return
+     */
     @RequestMapping(value="/speakers", method= RequestMethod.GET, produces="application/json")
     public List<Speaker> getSpeakers(){
         return userService.getSpeakers();
     }
 
+    /**
+     * Retourne une biographie de l'utilisateur
+     * @param speakerId
+     * @return
+     */
     @RequestMapping(value="/speakers/{uid}", method= RequestMethod.GET, produces="application/json")
     public Speaker getSpeaker(@PathVariable("uid") int speakerId){
         return userService.getSpeaker(speakerId);
     }
 
+    /**
+     * modifie une biographie de l'utilisateur
+     * @param speakerId
+     * @param speaker
+     * @return
+     */
     @RequestMapping(value = "/speakers/{uid}", method = RequestMethod.PUT)
     public Speaker putSpeaker(@PathVariable("uid") String speakerId,@RequestBody Speaker speaker)  {
         return userService.updateSpeaker(speakerId,speaker);
     }
 
+    /**
+     * ajout d'une biographie
+     * @param speaker
+     * @return
+     */
     @RequestMapping(value = "/speakers", method = RequestMethod.POST)
     public Speaker postSpeaker(@RequestBody Speaker speaker)  {
         return userService.addSpeaker(speaker);
     }
 
+    /**
+     * suppression d'une biographie
+     * @param speakerId
+     */
     @RequestMapping(value = "/speakers/{uid}", method = RequestMethod.DELETE)
     public void postSpeaker(@PathVariable("uid") int speakerId)  {
         userService.deleteSpeaker(speakerId);
     }
+
 }

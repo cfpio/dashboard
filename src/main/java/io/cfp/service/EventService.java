@@ -1,6 +1,7 @@
 package io.cfp.service;
 
 import io.cfp.domain.Event;
+import io.cfp.domain.UserProfil;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,7 +22,21 @@ public class EventService {
         events.add(new Event(3,"Hackathon CFP.io"));
     }
 
+    /**
+     * retourne l'ensemble des CFP
+     * @return
+     */
     public List<Event> getEvents(){
+        return events;
+    }
+
+    /**
+     * retourne les CFP auxquels j'ai postulé
+     * @param currentUser
+     * @return
+     */
+    public List<Event> getEvents(UserProfil currentUser) {
+        //
         return events;
     }
 
@@ -36,4 +51,6 @@ public class EventService {
         events.add(event);
         return event;
     }
+
+
 }

@@ -46,16 +46,29 @@ public class UserService {
     }
 
 
+    /**
+     * ajoute une biographie
+     * @param speaker
+     * @return
+     */
     public Speaker addSpeaker(Speaker speaker) {
       speakers.get(1).add(speaker);
         return speaker;
     }
 
+    /**
+     * retourne une biographie
+     * @param speakerId
+     * @return
+     */
     public Speaker getSpeaker(int speakerId) {
         return speakers.get(1).stream().filter(r -> r.getId() == speakerId ).findAny().get();
     }
 
-
+    /**
+     * suppression d'une biograhpie
+     * @param speakerId
+     */
     public void deleteSpeaker(int speakerId) {
         Speaker speaker = speakers.get(1).stream().filter(r -> r.getId() == speakerId ).findAny().get();
         speakers.get(1).remove(speaker);
