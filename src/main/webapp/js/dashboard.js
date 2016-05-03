@@ -30,6 +30,17 @@
       </ul>
     `
   })
+  .component('cfpSpeakerForm', {
+    bindings: {
+      speaker: '='
+    },
+    controller() {},
+    template: `
+      <form>
+        {{$ctrl.speaker}}
+      </form>
+    `
+  })
   document.addEventListener('DOMContentLoaded', () => {
     angular.bootstrap(document.documentElement, [dashboard.name])
   })
