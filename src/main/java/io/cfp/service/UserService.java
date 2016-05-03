@@ -24,22 +24,21 @@ public class UserService {
         Speaker speaker = new Speaker(new UserProfil(1,"toto","tata","mon@Email.com"),"ma bio");
         List<Speaker> sp = new ArrayList<Speaker>();
         sp.add(speaker);
-        speakers.put(1,sp);
+        speakers.put(speaker.getUser().getId(),sp);
 
         users.add(speaker.getUser());
     }
 
-    public UserProfil getCurrentUser() {
-        return users.get(0);
+    public UserProfil getUser(int userId) {
+        return users.stream().filter(r -> r.getId() == userId ).findAny().get();
     }
 
-    public UserProfil updateUser(UserProfil profil) {
+    public UserProfil updateUser(int userId, UserProfil profil) {
         return profil;
     }
 
-
-    public List<Speaker> getSpeakers() {
-        return speakers.get(1);
+    public List<Speaker> getSpeakers(int userId) {
+        return speakers.get(userId);
     }
 
     public Speaker updateSpeaker(String speakerId, Speaker speaker) {
@@ -47,32 +46,33 @@ public class UserService {
         return speaker;
     }
 
-
     /**
      * ajoute une biographie
      * @param speaker
      * @return
      */
-    public Speaker addSpeaker(Speaker speaker) {
-      speakers.get(1).add(speaker);
+    public Speaker addSpeaker(int  userId,Speaker speaker) {
+      speakers.get(userId).add(speaker);
         return speaker;
     }
 
     /**
      * retourne une biographie
+     *
+     * @param userId
      * @param speakerId
      * @return
      */
-    public Speaker getSpeaker(int speakerId) {
-        return speakers.get(1).stream().filter(r -> r.getId() == speakerId ).findAny().get();
+    public Speaker getSpeaker(int userId, int speakerId) {
+        return speakers.get(userId).stream().filter(r -> r.getId() == speakerId ).findAny().get();
     }
 
     /**
      * suppression d'une biograhpie
      * @param speakerId
      */
-    public void deleteSpeaker(int speakerId) {
-        Speaker speaker = speakers.get(1).stream().filter(r -> r.getId() == speakerId ).findAny().get();
-        speakers.get(1).remove(speaker);
+    public void deleteSpeaker(int userId,int speakerId) {
+        Speaker speaker = speakers.get(userId).stream().filter(r -> r.getId() == speakerId ).findAny().get();
+        speakers.get(userId).remove(speaker);
     }
 }

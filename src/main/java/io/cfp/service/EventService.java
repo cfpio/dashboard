@@ -32,10 +32,10 @@ public class EventService {
 
     /**
      * retourne les CFP auxquels j'ai postulé
-     * @param currentUser
+     * @param userId
      * @return
      */
-    public List<Event> getEvents(UserProfil currentUser) {
+    public List<Event> getEvents(int userId) {
         //
         return events;
     }

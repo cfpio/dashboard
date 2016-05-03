@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
-public class CfpController {
+public class CfpController extends RestrictedController{
 
     @Autowired
     private EventService eventService;
@@ -30,13 +30,5 @@ public class CfpController {
         return eventService.getEvents();
     }
 
-    @RequestMapping(value = "/event", method = RequestMethod.PUT)
-    public Event putEvent(@RequestBody Event event)  {
-        return eventService.updateEvent(event);
-    }
 
-    @RequestMapping(value = "/event", method = RequestMethod.POST)
-    public Event postEvent(@RequestBody Event event)  {
-        return eventService.addEvent(event);
-    }
 }

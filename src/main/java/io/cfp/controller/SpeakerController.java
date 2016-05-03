@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/api")
-public class SpeakerController {
+public class SpeakerController extends RestrictedController{
 
     @Autowired
     private UserService userService;
@@ -30,7 +30,7 @@ public class SpeakerController {
      */
     @RequestMapping(value="/speakers", method= RequestMethod.GET, produces="application/json")
     public List<Speaker> getSpeakers(){
-        return userService.getSpeakers();
+        return userService.getSpeakers(retrieveUserId());
     }
 
     /**
@@ -40,7 +40,7 @@ public class SpeakerController {
      */
     @RequestMapping(value="/speakers/{uid}", method= RequestMethod.GET, produces="application/json")
     public Speaker getSpeaker(@PathVariable("uid") int speakerId){
-        return userService.getSpeaker(speakerId);
+        return userService.getSpeaker(retrieveUserId(),speakerId);
     }
 
     /**
@@ -61,7 +61,7 @@ public class SpeakerController {
      */
     @RequestMapping(value = "/speakers", method = RequestMethod.POST)
     public Speaker postSpeaker(@RequestBody Speaker speaker)  {
-        return userService.addSpeaker(speaker);
+        return userService.addSpeaker(retrieveUserId(),speaker);
     }
 
     /**
@@ -70,7 +70,7 @@ public class SpeakerController {
      */
     @RequestMapping(value = "/speakers/{uid}", method = RequestMethod.DELETE)
     public void postSpeaker(@PathVariable("uid") int speakerId)  {
-        userService.deleteSpeaker(speakerId);
+        userService.deleteSpeaker(retrieveUserId(),speakerId);
     }
 
 }

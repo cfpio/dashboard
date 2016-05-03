@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/api")
-public class UserController {
+public class UserController extends RestrictedController{
 
     @Autowired
     private UserService userService;
@@ -32,7 +32,7 @@ public class UserController {
      */
     @RequestMapping(value="/user/events", method= RequestMethod.GET, produces="application/json")
     public List<Event> allEvent(){
-        return eventService.getEvents(userService.getCurrentUser());
+        return eventService.getEvents(retrieveUserId());
     }
 
     /**
@@ -41,7 +41,7 @@ public class UserController {
      */
     @RequestMapping(value="/user", method= RequestMethod.GET, produces="application/json")
     public UserProfil getUser(){
-        return userService.getCurrentUser();
+        return userService.getUser(retrieveUserId());
     }
 
     /**
@@ -51,6 +51,6 @@ public class UserController {
      */
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     public UserProfil putUserProfil(@RequestBody UserProfil profil)  {
-        return userService.updateUser(profil);
+        return userService.updateUser(retrieveUserId(),profil);
     }
 }
