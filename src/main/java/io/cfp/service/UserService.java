@@ -3,6 +3,7 @@ package io.cfp.service;
 import io.cfp.domain.Event;
 import io.cfp.domain.Speaker;
 import io.cfp.domain.UserProfil;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.Map;
 /**
  * Created by sguernion on 03/05/2016.
  */
+@Component
 public class UserService {
 
     // temporaire
