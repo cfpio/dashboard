@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class Speaker {
 
-
-
+    private int id;
     private UserProfil user;
     private String bio;
 
@@ -46,4 +45,13 @@ public class Speaker {
     public void setUser(UserProfil user) {
         this.user = user;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
